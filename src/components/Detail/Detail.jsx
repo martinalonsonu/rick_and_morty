@@ -33,7 +33,7 @@ function Detail() {
           <img src={character.image} alt={character.name} />
         </div>
       ) : (
-        alert('Este personaje no tiene detail')
+        alert("Este personaje no tiene detail")
       )}
     </>
   );
