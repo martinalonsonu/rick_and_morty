@@ -1,0 +1,91 @@
+.cards_container {
+  padding: 20px;
+  padding-bottom: 40px;
+  margin: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Favorites.css */
+
+/* Estilos para los selectores */
+.selectores {
+  text-align: center;
+  margin: 10px;
+}
+
+select {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #b0cfd4;
+  padding: 8px;
+  border: 2px solid #b0cfd4;
+  border-radius: 10px;
+  background-color: transparent;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+select:hover {
+  border: 2px solid #fbbb9a;
+}
+
+select:focus {
+  outline: none;
+  border: 2px solid #fbbb9a;
+}
+
+option {
+  background-color: #5d9d4d;
+  color: #fff;
+}
+
+/* Estilos para los filtros */
+select.filter {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #b0cfd4;
+  padding: 8px;
+  border: 2px solid #b0cfd4;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+select.filter:hover {
+  border: 2px solid #fbbb9a;
+}
+
+select.filter:focus {
+  outline: none;
+  border: 2px solid #fbbb9a;
+}
+
+option.All {
+  background-color: #e68825;
+  color: #fff;
+}
+
+option.Male {
+  background-color: #fbbb9a;
+  color: #000;
+}
+
+option.Female {
+  background-color: #0ca8be;
+  color: #fff;
+}
+
+option.Genderless {
+  background-color: #5d9d4d;
+  color: #fff;
+}
+
+option.unknown {
+  background-color: #b0cfd4;
+  color: #000;
+}

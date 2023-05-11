@@ -4,17 +4,23 @@ import Cards from "./components/Cards/Cards";
 import Nav from "./components/Nav/Nav";
 import About from "./components/About/About";
 import Detail from "./components/Detail/Detail";
+import Favorites from "./components/Favorites/Favorites";
 import axios from "axios";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Error404 from "./components/Error404/Error404";
 import Form from "./components/Form/Form";
+import { useDispatch } from "react-redux";
+import { removeFav } from "./redux/actions";
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const navigate = useNavigate()
   const [access, setAccess] = useState(false)
-  const EMAIL = "martin99huacho@gmail.com"
-  const PASSWORD = "martin5494"
+  const EMAIL = "admin@admin.com"
+  const PASSWORD = "123456"
+
+  const dispatch = useDispatch();
+
 
   const login = (userData) => {
     if (userData.password === PASSWORD && userData.email === EMAIL) {
@@ -52,23 +58,36 @@ function App() {
 
   const onClose = (id) => {
     setCharacters(characters.filter((element) => element.id !== Number(id)));
+    dispatch(removeFav(id))
   };
 
   return (
     <div>
-      {pathname !== "/" && <Nav onSearch={onSearch} logOut={logOut} />}
-      <Routes>
-        <Route path="/" element={<Form login={login} />} />
-        <Route
-          path="/home"
-          element={<Cards characters={characters} onClose={onClose} />}
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="*" element={<Error404 />} />
-      </Routes>
+      <div>
+        {pathname !== "/" && <Nav onSearch={onSearch} logOut={logOut} />}
+      </div>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Form login={login} />} />
+          <Route
+            path="/home"
+            element={<Cards characters={characters} onClose={onClose} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </div >
     </div>
   );
 }
 
 export default App;
+
+//PALETA DE COLORES CSS
+// .color1 { #e68825 };
+// .color2 { #fbbb9a };
+// .color3 { #0ca8be };
+// .color4 { #5d9d4d };
+// .color5 { #b0cfd4 };
