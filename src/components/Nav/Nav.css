@@ -23,6 +23,7 @@
   border-radius: 0.5rem;
   margin-left: 1rem;
   padding: 0.5rem 1rem;
+  font-family: 'Creepster', cursive;
 }
 
 .nav-button:hover {
@@ -38,5 +39,5 @@
 }
 
 .nav-link:hover {
-  color: #fbbb9a;
+  color: #5d9d4d;
 }

@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Detail.css";
 
 function Detail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [character, setCharacter] = useState({});
 
   useEffect(() => {
@@ -21,6 +22,10 @@ function Detail() {
     return setCharacter({});
   }, [id]);
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="detail-container">
       <h1>Detail Character</h1>
@@ -33,6 +38,9 @@ function Detail() {
               <h2>Species: {character.species}</h2>
               <h2>Gender: {character.gender}</h2>
               <h2>Origin: {character.origin?.name}</h2>
+              <button className="returnBtn" onClick={handleGoBack}>
+                Regresar
+              </button>
             </div>
             <img src={character.image} alt={character.name} />
           </div>

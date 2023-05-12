@@ -39,11 +39,19 @@ function Card({ id, name, status, species, gender, origin, image, onClose }) {
           <button className="info_button">i</button>
         </Link>
         {isFav ? (
-          <button onClick={handleFavorite}>❤️</button>
+          <button className="cor_fav" onClick={handleFavorite}>
+            ❤️
+          </button>
         ) : (
-          <button onClick={handleFavorite}>🤍</button>
+          <button className="cor_fav" onClick={handleFavorite}>
+            🤍
+          </button>
         )}
-        {pathname !== "/favorites" && <button onClick={onClose}>X</button>}
+        {pathname !== "/favorites" && (
+          <button className="onClose" onClick={onClose}>
+            X
+          </button>
+        )}
       </div>
       <div className="img_container">
         <img src={image} alt={name} />
@@ -53,7 +61,7 @@ function Card({ id, name, status, species, gender, origin, image, onClose }) {
         <p>Status: {status}</p>
         <p>Specie: {species}</p>
         <p>Gender: {gender}</p>
-        <p>Origin: {origin}</p>
+        {pathname !== "/favorites" && <p>Origin: {origin}</p>}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@
   border: none;
   color: #ffffff;
   margin-right: 1rem;
+  font-family: 'Nunito', sans-serif;
 }
 
 .search-input:focus {
@@ -26,8 +27,10 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  font-family: 'Creepster', cursive;
 }
 
 .search-button:hover {
   background-color: #fbbb9a;
+  color: #5d9d4d;
 }

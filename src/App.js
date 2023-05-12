@@ -84,10 +84,3 @@ function App() {
 }
 
 export default App;
-
-//PALETA DE COLORES CSS
-// .color1 { #e68825 };
-// .color2 { #fbbb9a };
-// .color3 { #0ca8be };
-// .color4 { #5d9d4d };
-// .color5 { #b0cfd4 };
