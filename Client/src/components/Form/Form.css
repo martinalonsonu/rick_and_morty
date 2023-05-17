@@ -1,18 +1,31 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  width: 350px;
-  margin: 0 auto;
-  padding: 20px;
+  align-items: center;
+  justify-content: center;
   border-radius: 5px;
-  background-color: #5d9d4d;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  /* Agrega un efecto de desenfoque */
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 400px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(93, 157, 77, 0.7);
+  /* Color de fondo transparente */
+
 }
 
+
 .form-label {
-  color: #e68825;
+  color: #fdfdfd;
   font-size: 1.2rem;
   margin-bottom: 5px;
+  font-family: 'Creepster', cursive;
+}
+
+.form-span {
+  font-family: 'Nunito', sans-serif;
 }
 
 .form-input {

@@ -12,11 +12,7 @@ function Nav({ onSearch, logOut }) {
       </Link>
       <div className="nav-buttons">
         <SearchBar onSearch={onSearch} />
-        <button className="nav-button">
-          <Link to="/about" className="nav-link">
-            About
-          </Link>
-        </button>
+
         <button className="nav-button">
           <Link to="/home" className="nav-link">
             Home
@@ -25,6 +21,11 @@ function Nav({ onSearch, logOut }) {
         <button className="nav-button">
           <Link to="/favorites" className="nav-link">
             Favorites
+          </Link>
+        </button>
+        <button className="nav-button">
+          <Link to="/about" className="nav-link">
+            About
           </Link>
         </button>
         <button className="nav-button" onClick={logOut}>

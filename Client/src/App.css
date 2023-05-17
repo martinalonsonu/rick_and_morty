@@ -1,4 +1,41 @@
 .App {
    text-align: center;
-   background-color: blue;
+}
+
+.app-container {
+   position: relative;
+   z-index: 1;
+   min-height: 100vh;
+   box-sizing: border-box;
+}
+
+.app-container::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-image: url("./img/bg.png");
+   background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+   filter: blur(2px);
+   /*Ajustaelvalordeldesenfoquesegúntuspreferencias*/
+   z-index: -1;
+   -webkit-filter: blur(2px);
+}
+
+
+.app-container.with-form {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+}
+
+.app-container.with-form::before {
+   background-image: url("./img/bg2.gif");
+   filter: none;
+   -webkit-filter: none;
 }

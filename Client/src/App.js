@@ -21,16 +21,19 @@ function App() {
 
   const dispatch = useDispatch();
 
+  const [showForm, setShowForm] = useState(true);
 
   const login = (userData) => {
     if (userData.password === PASSWORD && userData.email === EMAIL) {
       setAccess(true);
       navigate('/home');
+      setShowForm(false)
     }
   }
 
   const logOut = () => {
     setAccess(false)
+    setShowForm(true)
   }
 
   useEffect(() => {
@@ -42,11 +45,12 @@ function App() {
   const onSearch = (id) => {
     axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
       ({ data }) => {
-        if (data.name) {
-          let exist = characters.find((character) => character.id === data.id);
+        if (data) {
+          const exist = characters.find((character) => character.id === data?.id);
+          console.log(exist)
           if (exist) {
             alert("¡El personaje ya ha sido ingresado!");
-          } else if (!exist) {
+          } else {
             setCharacters((oldChars) => [...oldChars, data]);
           }
         } else {
@@ -62,7 +66,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={`app-container ${showForm ? "with-form" : ""}`}>
       <div>
         {pathname !== "/" && <Nav onSearch={onSearch} logOut={logOut} />}
       </div>

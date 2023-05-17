@@ -1,8 +1,8 @@
 .cards_container {
   padding: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -12,7 +12,7 @@
 /* Estilos para los selectores */
 .selectores {
   text-align: center;
-  margin: 10px;
+  margin: 20px;
 }
 
 select {
@@ -21,9 +21,9 @@ select {
   font-weight: 500;
   color: #b0cfd4;
   padding: 8px;
-  border: 2px solid #b0cfd4;
+  border: 2px solid #5d9d4d;
   border-radius: 10px;
-  background-color: transparent;
+  background-color: white;
   margin-right: 10px;
   cursor: pointer;
 }
