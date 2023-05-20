@@ -1,10 +1,10 @@
 .card {
   position: relative;
-  border: 1px solid #ccc;
+  border: 3px solid #e68825;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 8);
   margin: 5px;
 }
 
@@ -62,6 +62,10 @@
   pointer-events: none;
 }
 
+.card:hover {
+  border: 3px solid #ccc;
+}
+
 .card:hover .text_container {
   transform: translateY(0%);
   opacity: 1;
@@ -69,7 +73,8 @@
 }
 
 .card .text_container h3 {
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-right: 10px;
 }
 
 .card .text_container p {

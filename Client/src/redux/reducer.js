@@ -1,49 +1,47 @@
 import { ADD_FAV, FILTER, ORDER, REMOVE_FAV } from "./action-types";
 
 const initialState = {
-  myFavorites: [],
-  allCharacters: [],
+    myFavorites: [],
+    allCharacters: [],
 }
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_FAV:
-      return {
-        ...state,
-        myFavorites: [...state.myFavorites, action.payload],
-        allCharacters: [...state.allCharacters, action.payload]
-      }
+    switch (action.type) {
+        case ADD_FAV:
+            return {
+                ...state,
+                myFavorites: action.payload,
+                allCharacters: action.payload
+            };
 
-    case REMOVE_FAV:
-      const filterCharacter = state.myFavorites.filter((character) => character.id !== Number(action.payload))
-      const filterAllCharacter = state.allCharacters.filter((character) => character.id !== Number(action.payload))
-      return {
-        myFavorites: filterCharacter,
-        allCharacters: filterAllCharacter
-      }
+        case REMOVE_FAV:
+            return {
+                myFavorites: action.payload,
+                allCharacters: action.payload,
+            }
 
-    case FILTER:
-      const allCharsFilter = state.allCharacters.filter((char) => char.gender === action.payload)
-      return {
-        ...state,
-        myFavorites:
-          action.payload === "All"
-            ? state.allCharacters
-            : allCharsFilter
-      }
+        case FILTER:
+            const allCharsFilter = state.allCharacters.filter((char) => char.gender === action.payload)
+            return {
+                ...state,
+                myFavorites:
+                    action.payload === "All"
+                        ? state.allCharacters
+                        : allCharsFilter
+            }
 
-    case ORDER:
-      return {
-        ...state,
-        myFavorites:
-          action.payload === "A"
-            ? state.allCharacters.sort((a, b) => a.id - b.id)
-            : state.allCharacters.sort((a, b) => b.id - a.id)
-      }
+        case ORDER:
+            return {
+                ...state,
+                myFavorites:
+                    action.payload === "A"
+                        ? state.allCharacters.sort((a, b) => a.id - b.id)
+                        : state.allCharacters.sort((a, b) => b.id - a.id)
+            }
 
-    default:
-      return { ...state }
-  }
+        default:
+            return { ...state }
+    }
 }
 
 

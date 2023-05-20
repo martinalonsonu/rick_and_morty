@@ -36,17 +36,16 @@ function Favorites() {
       <div className="cards_container">
         {myFavorites.map(
           ({ id, name, status, species, gender, origin, image }) => (
-            <div key={id}>
-              <Card
-                id={id}
-                name={name}
-                status={status}
-                species={species}
-                gender={gender}
-                origin={origin.name}
-                image={image}
-              />
-            </div>
+            <Card
+              key={id}
+              id={id}
+              name={name}
+              status={status}
+              species={species}
+              gender={gender}
+              origin={origin.name}
+              image={image}
+            />
           )
         )}
       </div>

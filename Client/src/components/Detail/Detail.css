@@ -21,14 +21,26 @@
   width: 50%;
 }
 
+h1 {
+  font-family: 'Creepster', cursive;
+  color: white;
+  text-shadow: 0 0 6px black;
+  letter-spacing: 2px;
+}
+
 .detail-text h2 {
   margin: 5px 0;
   font-size: 20px;
+  font-family: 'Righteous', cursive;
+  color: whitesmoke;
+  text-shadow: 0 0 6px black;
+  letter-spacing: 1px;
 }
 
 .detail-info img {
   width: 40%;
   border-radius: 10px;
+  box-shadow: 0 0 6px black;
 }
 
 .returnBtn {
@@ -41,6 +53,7 @@
   margin-top: 10px;
   padding: 0.5rem 1rem;
   font-family: 'Creepster', cursive;
+  box-shadow: 0 0 6px black;
 }
 
 .returnBtn:hover {

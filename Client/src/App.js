@@ -13,78 +13,89 @@ import { useDispatch } from "react-redux";
 import { removeFav } from "./redux/actions";
 
 function App() {
-  const [characters, setCharacters] = useState([]);
-  const navigate = useNavigate()
-  const [access, setAccess] = useState(false)
-  const EMAIL = "admin@admin.com"
-  const PASSWORD = "123456"
+    const [characters, setCharacters] = useState([]);
+    const navigate = useNavigate()
+    const [access, setAccess] = useState(false)
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const [showForm, setShowForm] = useState(true);
+    const [showForm, setShowForm] = useState(true);
 
-  const login = (userData) => {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate('/home');
-      setShowForm(false)
-    }
-  }
-
-  const logOut = () => {
-    setAccess(false)
-    setShowForm(true)
-  }
-
-  useEffect(() => {
-    !access && navigate('/');
-  }, [access, navigate]);
-
-  const { pathname } = useLocation()
-
-  const onSearch = (id) => {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-      ({ data }) => {
-        if (data) {
-          const exist = characters.find((character) => character.id === data?.id);
-          console.log(exist)
-          if (exist) {
-            alert("¡El personaje ya ha sido ingresado!");
-          } else {
-            setCharacters((oldChars) => [...oldChars, data]);
-          }
-        } else {
-          window.alert("¡No hay personajes con este ID!");
+    const login = async (userData) => {
+        const { email, password } = userData;
+        const URL = 'http://localhost:3001/rickandmorty/login/';
+        const QUERY = `?email=${email}&password=${password}`
+        try {
+            const { data } = await axios(URL + QUERY)
+            const { access } = data
+            setAccess(data);
+            access && navigate('/home');
+            setShowForm(false)
+        } catch (error) {
+            return { error: error.message }
         }
-      }
+    }
+
+    const logOut = () => {
+        setAccess(false)
+        setShowForm(true)
+    }
+
+    useEffect(() => {
+        !access && navigate('/');
+    }, [access, navigate]);
+
+    const { pathname } = useLocation()
+
+    const onSearch = async (id) => {
+        const url = 'http://localhost:3001/rickandmorty/character/' + id
+        try {
+            const { data } = await axios(url)
+            const exist = characters.find((character) => character.id === data?.id);
+            if (data) {
+                if (!exist) {
+                    setCharacters((oldChars) => [...oldChars, data])
+                } else {
+                    alert("¡El personaje ya ha sido ingresado!");
+                }
+            } else {
+                alert("¡No hay personajes con este ID!");
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    const onClose = (id) => {
+        setCharacters(characters.filter((element) => element.id !== id));
+        dispatch(removeFav(id))
+    };
+
+    const random = () => {
+        const number = Math.floor(Math.random() * 826) + 1
+        onSearch(number)
+    }
+
+    return (
+        <div className={`app-container ${showForm ? "with-form" : ""}`}>
+            <div>
+                {pathname !== "/" && <Nav onSearch={onSearch} logOut={logOut} random={random} />}
+            </div>
+            <div className="content">
+                <Routes>
+                    <Route path="/" element={<Form login={login} />} />
+                    <Route
+                        path="/home"
+                        element={<Cards characters={characters} onClose={onClose} />}
+                    />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/detail/:id" element={<Detail />} />
+                    <Route path="/favorites" element={<Favorites />} />
+                    <Route path="*" element={<Error404 />} />
+                </Routes>
+            </div >
+        </div>
     );
-  };
-
-  const onClose = (id) => {
-    setCharacters(characters.filter((element) => element.id !== Number(id)));
-    dispatch(removeFav(id))
-  };
-
-  return (
-    <div className={`app-container ${showForm ? "with-form" : ""}`}>
-      <div>
-        {pathname !== "/" && <Nav onSearch={onSearch} logOut={logOut} />}
-      </div>
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<Form login={login} />} />
-          <Route
-            path="/home"
-            element={<Cards characters={characters} onClose={onClose} />}
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </div >
-    </div>
-  );
 }
 
 export default App;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../img/ram.png";
 import "./Nav.css";
 
-function Nav({ onSearch, logOut }) {
+function Nav({ onSearch, logOut, random }) {
   return (
     <div className="nav-container">
       <Link to="/home">
@@ -17,6 +17,9 @@ function Nav({ onSearch, logOut }) {
           <Link to="/home" className="nav-link">
             Home
           </Link>
+        </button>
+        <button className="nav-button" onClick={random}>
+          Random
         </button>
         <button className="nav-button">
           <Link to="/favorites" className="nav-link">
